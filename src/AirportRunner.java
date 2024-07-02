@@ -89,6 +89,7 @@ public class AirportRunner {
                        }
                        index++;
                    }
+                   //if no empty space in flights directory
 
                    if(flights.length==index) {
                       for(int i=0;i< flights.length;i++){
