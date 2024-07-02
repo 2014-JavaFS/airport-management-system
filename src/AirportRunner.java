@@ -28,7 +28,7 @@ public class AirportRunner {
         // Variables that need to be at the top we need to declare earlier
         int choice = 0;
         Scanner scanner = new Scanner(System.in);
-        String[] flights = new String[5];
+        String[] flights = new String[] {null, null, null, null, null};
 
        // Design Step 1
         // declaring to Java what datatype the scanner variable is
@@ -69,6 +69,7 @@ public class AirportRunner {
                                 System.out.println(flights[i]);
                             }
                         }
+                        System.out.println();
                     }
                     break; //include break, otherwise it will fall through to the next case statement
                 case 2:
@@ -83,6 +84,32 @@ public class AirportRunner {
 
                         Your code works & you think you've gotten all the logic done, push this up in a branch to the org repo
                     */
+                    int currFlight = -1;
+                    for (int i = 0; i < 5; i++) {
+                        if (flights[i] == null) {
+                            //System.out.println(i);
+                            currFlight = i;
+                            break;
+                        }
+                    }
+                    Scanner addFlightScanner = new Scanner(System.in);
+                    String tempFlight;
+                    if (currFlight != -1) {
+                        tempFlight = addFlightScanner.nextLine();
+                        if (tempFlight.contains(":")) {
+                            flights[currFlight] = tempFlight;
+                            currFlight = tempFlight.indexOf(':');
+                            System.out.printf("Added flight to %s using airline %s.%n", tempFlight.substring(currFlight + 1, tempFlight.length()),
+                                    tempFlight.substring(0, currFlight));
+                        } else {
+                            System.out.println("Invalid Input, input was not in order Airline:Destination");
+                            continue;
+                        }
+                    } else {
+                        System.out.println("Flight database full, please try again later. Returning to the main menu.");
+                        System.out.println();
+                        break;
+                    }
                     break;
                 case 3:
                     System.out.println("Thanks for using our airpoirt services, have a wonderful day!");
