@@ -27,6 +27,7 @@ public class AirportRunner {
 
         // Variables that need to be at the top we need to declare earlier
         int choice = 0;
+        String destination = "";
         Scanner scanner = new Scanner(System.in);
         String[] flights = new String[5];
 
@@ -74,6 +75,8 @@ public class AirportRunner {
                 case 2:
                     System.out.println("Adding a flight, please enter information Airline:Destination: ");
                     // TODO: Implement the addition of flights to our arrays
+                    destination = scanner.next();
+                    addFlight(5, flights, destination);
                     /* Paired Programming
                         driver - one person that writes the code
                         navigator(s) - individuals that guide the code along & any input they deem reasonable
@@ -85,7 +88,7 @@ public class AirportRunner {
                     */
                     break;
                 case 3:
-                    System.out.println("Thanks for using our airpoirt services, have a wonderful day!");
+                    System.out.println("Thanks for using our airport services, have a wonderful day!");
                     break;
                 default:
                     System.out.println("Invalid Input, Please enter a number 1-3.");
@@ -103,5 +106,18 @@ public class AirportRunner {
             }
         }
         return true;
+    }
+
+
+    public static String[] addFlight(int size, String[] arr, String flight) {
+       // add the new flight to the empty spot
+
+        for (int i = 0; i < size; i++) {
+            if (arr[i] == null) {
+                arr[i] = flight;
+                break;
+            }
+        }
+        return arr;
     }
 }
