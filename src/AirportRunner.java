@@ -72,7 +72,6 @@ public class AirportRunner {
                     }
                     break; //include break, otherwise it will fall through to the next case statement
                 case 2:
-                    System.out.println("Adding a flight, please enter information Airline:Destination: ");
                     // TODO: Implement the addition of flights to our arrays
                     /* Paired Programming
                         driver - one person that writes the code
@@ -83,6 +82,14 @@ public class AirportRunner {
 
                         Your code works & you think you've gotten all the logic done, push this up in a branch to the org repo
                     */
+                    int emptyFlight = nextEmptyFlight(flights);
+                    if (emptyFlight == -1){
+                        System.out.println("Flight list is full");
+                    } else {
+                        System.out.println("Adding a flight, please enter information Airline:Destination: ");
+                        flights[emptyFlight] = scanner.next();
+                        System.out.println(flights[emptyFlight] + " has been added");
+                    }
                     break;
                 case 3:
                     System.out.println("Thanks for using our airpoirt services, have a wonderful day!");
@@ -93,6 +100,15 @@ public class AirportRunner {
             }
            //System.out.printf("Your choice was option %s", choice); // print formater, where %s is replaced with the variable
         } while (choice != 3);
+    }
+
+    private static int nextEmptyFlight(String[] arr) {
+        for(int i = 0; i < arr.length; i++){ // return next available slot if possible
+            if(arr[i] == null){
+                return i;
+            }
+        }
+        return -1;
     }
 
     // Method Signature: access-modifier optional-static return-datatype name-of-method(Datatype variable-name){}
