@@ -51,6 +51,7 @@ public class AirportRunner {
             }
 
             choice = scanner.nextInt(); // can only reassign value, not datatype
+            scanner.nextLine();
 
 //            if( choice > 3){
 //                System.out.println("Invalid Input, Please enter a number 1-3.");
@@ -83,6 +84,17 @@ public class AirportRunner {
 
                         Your code works & you think you've gotten all the logic done, push this up in a branch to the org repo
                     */
+
+                    if (isFull(flights)) {     //flights are not full
+                        System.out.println("Flights are full \n");
+                    }else {
+                        for (int i = 0; i < flights.length; i++) {
+                            if (flights[i] == null) {
+                                flights[i] = scanner.nextLine();
+                                break;
+                            }
+                        }
+                    }
                     break;
                 case 3:
                     System.out.println("Thanks for using our airpoirt services, have a wonderful day!");
@@ -99,6 +111,15 @@ public class AirportRunner {
     public static boolean isEmpty(String[] arr){ // defining the parameter of a string array to be included when executing this mehtod
         for(String element : arr){ // enhanced for each loop, that iterates through the arrays elements returning & assigning the value to the declared variable flight
             if(element !=null){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static boolean isFull(String[] arr){ // defining the parameter of a string array to be included when executing this mehtod
+        for(String element : arr){ // enhanced for each loop, that iterates through the arrays elements returning & assigning the value to the declared variable flight
+            if(element == null){
                 return false;
             }
         }
