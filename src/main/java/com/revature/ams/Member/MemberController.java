@@ -6,6 +6,10 @@ import com.revature.ams.util.exceptions.DataNotFoundException;
 
 import java.util.Scanner;
 
+/**
+ * Used to handle the content for a request by a user and return any pertinent information back. Initialization requires
+ * a Scanner & MemberService to be injected in.
+ */
 public class MemberController {
     private final Scanner scanner;
     private final MemberService memberService;
@@ -16,6 +20,10 @@ public class MemberController {
         this.memberService = memberService;
     }
 
+    /**
+     * Prompts the user for information to be registered to our database. Information is then passed down to the memberService
+     * to be validated prior to persistence in database.
+     */
     public void register(){
         System.out.println("Please enter first name: ");
         String firstName = scanner.next();
@@ -36,6 +44,12 @@ public class MemberController {
         count++;
     }
 
+    /**
+     * Currently establishes a mean to update a single attribute of the class for persistence in our database. Prompts the
+     * user for information about the MemberId they wish to update. Proceeds to search that information to assure its'
+     * existence in the database. Once confirmed it moves on to ask the single attribute to update for our Member. Performs
+     * update after all new information has been gathered & will handle any exceptions thrown by the memberService update method.
+     */
     public void update(){
         System.out.println("Enter the ID of the member to update: ");
         int memberId = scanner.nextInt();

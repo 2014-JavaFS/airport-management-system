@@ -7,6 +7,10 @@ import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 import java.util.function.Predicate;
 
+/**
+ * Used to handle the content for a request by a user and return any pertinent information back. Initialization requires
+ * a Scanner & MemberService to be injected in.
+ */
 public class FlightController {
     // Attributes
 

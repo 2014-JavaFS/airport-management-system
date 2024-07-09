@@ -6,15 +6,30 @@ import com.revature.ams.util.interfaces.Serviceable;
 import java.util.ArrayList;
 import java.util.List;
 
-// TODO: REVIEW ME
+/**
+ * Class to validate all information that was provided by the controller based on the business logic of our application
+ * prior to its persistence to the database. List acting as temporary ephemeral database, PLEASE UPDATE WITH ADDITION OF
+ * DAO!
+ */
 public class MemberService implements Serviceable<Member> {
     private List<Member> memberList = new ArrayList<>();
 
+    /**
+     * No implementation as this is a feature we don't want, but is required by Serviceable.
+     *
+     * @return null
+     */
     @Override
     public Member[] findAll() {
-        return new Member[0];
+        return null;
     }
 
+    /**
+     * Iterates through our database to find the Member object with the associated memberId.
+     *
+     * @param memberId - int value reflective of our database value
+     * @return - Member object if found in database, otherwise null
+     */
     @Override
     public Member findById(int memberId) {
         for (Member member : memberList) {
@@ -25,6 +40,12 @@ public class MemberService implements Serviceable<Member> {
         return null;
     }
 
+    /**
+     * Simply adds a newly created member to the database, no validation at this point.
+     *
+     * @param newMember - newly created member from the controller layer
+     * @return - the newMember provided in the param
+     */
     @Override
     public Member create(Member newMember) {
         memberList.add(newMember);
@@ -33,7 +54,7 @@ public class MemberService implements Serviceable<Member> {
 
     /**
      * Searches the database for information where the email & password provided must be equal to a row within
-     * our database.
+     * our database. Only utilized by the AuthService
      *
      * @param email - String
      * @param password - String
@@ -57,10 +78,8 @@ public class MemberService implements Serviceable<Member> {
      * @throws DataNotFoundException - MemberId provided doesn't match with anything in the database
      */
     public void update(Member updatedMember) {
-//        int index = -1;
         for (int i = 0; i < memberList.size(); i++) {
             if (memberList.get(i).getMemberId() == updatedMember.getMemberId()) {
-//                index = i;
                 memberList.set(i, updatedMember);
                 return;
             }
@@ -68,9 +87,6 @@ public class MemberService implements Serviceable<Member> {
 
         throw new DataNotFoundException("Member with ID provided not within Database");
 
-//        if (index != -1) {
-//            memberList.set(index, updatedMember);
-//        }
     }
 
 }

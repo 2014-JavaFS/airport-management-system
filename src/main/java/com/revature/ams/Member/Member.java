@@ -1,24 +1,31 @@
 package com.revature.ams.Member;
 
-// TODO: REVIEW ME
+/**
+ * Member model holds all information pertaining to our pilots, admins & passengers for usage of our application
+ */
 public class Member {
     private int memberId;
     private String firstName;
     private String lastName;
     private String email;
-    private MemberType type;
+    private MemberType memberType;
     private String password;
 
+    /**
+     * ENUM for specific use on CONSTANT values that are acceptable for our MemberType
+     */
     public enum MemberType {
         PILOT, ADMIN, PASSENGER
     }
 
-    public Member(int id, String firstName, String lastName, String email, MemberType type, String password) {
+    public Member(){}
+
+    public Member(int id, String firstName, String lastName, String email, MemberType memberType, String password) {
         this.memberId = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.type = type;
+        this.memberType = memberType;
         this.password = password;
     }
 
@@ -54,12 +61,12 @@ public class Member {
         this.email = email;
     }
 
-    public MemberType getType() {
-        return type;
+    public MemberType getMemberType() {
+        return memberType;
     }
 
-    public void setType(MemberType type) {
-        this.type = type;
+    public void setMemberType(MemberType memberType) {
+        this.memberType = memberType;
     }
 
     public String getPassword() {
@@ -74,6 +81,10 @@ public class Member {
         return firstName + " " + lastName;
     }
 
+    /**
+     * Overridden toString method excludes password for security purposes
+     * @return
+     */
     @Override
     public String toString() {
         return "Member{" +
@@ -81,7 +92,7 @@ public class Member {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
-                ", type=" + type +
+                ", type=" + memberType +
                 '}';
     }
 

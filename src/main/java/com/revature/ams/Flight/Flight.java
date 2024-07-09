@@ -2,10 +2,12 @@ package com.revature.ams.Flight;
 
 import java.time.LocalDateTime;
 
+/**
+ * Flight models holds the information for a lot of relationships between the Airport, Member & Airline models. Along
+ * with this we have established a minimum flight requirement of needing a flightNumber, originAirport, destinationAirport
+ * and a seatCount for initialization. No args included for future implementation of Javalin.
+ */
 public class Flight {
-    // Define Attributes: information contained within every instance of this class (object)
-
-    // OOP - Encapsulation - hide information from being easily access & requires the use of getters & setters
     private int flightNumber;
     private String originAirport; // Airport identification number or String
     private String destinationAirport;
@@ -15,17 +17,8 @@ public class Flight {
     private int pilot;
     private int airline;
 
-    // Constructors: Initializes(fills in the informaiton for the class attribute or variables) or Instantiates(creation of the object) a class,
-    // What if don't define constructors? There is an implicit/default constructor that sets everything to null, NoArgs Constructor
-    // What happens to our default/NoArgs constructor if we create a constructor?
-    // OOP - Polymorphism - Method Overloading, changing the number of parameters defined & the actions that take place
     public Flight(){}
 
-
-    // Reason behind naming the parameters in our constructor the same as our class attributes is to shadow the names,
-    // so you know EXACTLY what's being initiliazed
-    // example: new Flight(1, "PHL", "BOS".....)
-    // AllArgs constructor
     public Flight(int flightNumber, String originAirport, String destinationAirport,
                   LocalDateTime timeDeparture, LocalDateTime timeArrival, short seatCount, int pilot, int airline){
         this.flightNumber = flightNumber;
@@ -45,8 +38,6 @@ public class Flight {
         this.seatCount = seatCount;
     }
 
-    // Methods - functionality applied to every class
-    // Getters & Setters >> Overrides >> Custom Methods
     public int getFlightNumber() {
         return flightNumber;
     }
@@ -111,9 +102,7 @@ public class Flight {
         this.airline = airline;
     }
 
-    // OOP - Inheritence - Object is the parent class, this child class of Flight has access to the toString()
-    // OOP - Polymorphism - Method Overriding, taking a methods implementation from an inherited class and changing specifically for the child class
-    @Override // annotation - metadata to let java know this is Overriding a method: At the root of EVERY OBJECT IN JAVA is the Object Class
+    @Override
     public String toString() {
         return "Flight{" +
                 "flightNumber=" + flightNumber +
@@ -125,11 +114,4 @@ public class Flight {
                 ", airline=" + airline +
                 '}';
     }
-
-    // Custom Methods - you always would put a custom method below the generated methods
-    // OOP - Polymorphism - Method Overloading
-    public long calculateTravelTime(){
-        return this.timeDeparture.getMinute() - this.timeArrival.getMinute();
-    }
-
 }

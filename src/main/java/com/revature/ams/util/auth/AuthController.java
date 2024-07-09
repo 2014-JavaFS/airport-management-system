@@ -5,7 +5,10 @@ import com.revature.ams.Member.Member;
 import javax.security.sasl.AuthenticationException;
 import java.util.Scanner;
 
-// TODO: REVIEW ME
+/**
+ * Used to handle the information from a user request to log them in. Initialization requires
+ * a Scanner & AuthService to be injected in.
+ */
 public class AuthController {
 
     private final Scanner scanner;
