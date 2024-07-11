@@ -24,12 +24,12 @@ create table flights(
 	flight_number integer primary key check (flight_number > 1000 and flight_number < 999999),
 	origin_airport varchar(3) not null, -- foreign keys, use alter
 	destination_airport varchar(3) not null,
-	time_departure date,
-	time_arrival date,
+	time_departure timestamp,
+	time_arrival timestamp,
 	seat_count smallint not null check (seat_count > 0),
 	pilot integer check (pilot > 100000 and pilot < 999999),
 	airline integer
-); 
+);
 
 
 insert into 

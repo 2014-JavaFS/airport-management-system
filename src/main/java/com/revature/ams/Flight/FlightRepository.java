@@ -7,8 +7,11 @@ import com.revature.ams.util.interfaces.Crudable;
 import com.revature.ams.util.interfaces.Serviceable;
 
 import java.sql.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 /**
  * Flight repository follows the Data Access Object (DAO) pattern
@@ -18,13 +21,52 @@ public class FlightRepository implements Crudable<Flight>{
     // TODO: IMPLEMENT ME!!!!!
     @Override
     public boolean update(Flight updatedFlight) {
-        return false;
+        try(Connection conn = ConnectionFactory.getConnectionFactory().getConnection()) {
+
+            Flight flightId = findById(updatedFlight.getFlightNumber());
+
+            String sql = "UPDATE flights set flight_number = ?, origin_airport = ?, destination_airport = ?," +
+                    "time_departure = ?, time_arrival = ?, seat_count = ?, pilot = ?, airline = ? WHERE flight_number = ?";
+
+
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+
+            preparedStatement.setInt(1, updatedFlight.getFlightNumber());
+            preparedStatement.setString(2, updatedFlight.getOriginAirport());
+            preparedStatement.setString(3, updatedFlight.getDestinationAirport());
+            preparedStatement.setObject(4, new Timestamp(updatedFlight.getTimeDeparture().toLocalTime().toNanoOfDay()));
+            preparedStatement.setObject(5, new Timestamp(updatedFlight.getTimeArrival().toLocalTime().toNanoOfDay()));
+            preparedStatement.setShort(6, updatedFlight.getSeatCount());
+            preparedStatement.setInt(7, updatedFlight.getPilot());
+            preparedStatement.setInt(8, updatedFlight.getAirline());
+            preparedStatement.setInt(9, updatedFlight.getFlightNumber());
+
+            preparedStatement.executeUpdate();
+
+            return true;
+        } catch(SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     // TODO: IMPLEMENT ME!!!!!
     @Override
-    public boolean delete() {
-        return false;
+    public boolean delete(int flightNumber) {
+        try(Connection conn = ConnectionFactory.getConnectionFactory().getConnection()) {
+
+            String sql = "DELETE FROM flights WHERE flight_number = ?";
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+
+            preparedStatement.setInt(1, flightNumber);
+
+            preparedStatement.executeUpdate();
+
+            return true;
+        } catch(SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     @Override
@@ -42,8 +84,8 @@ public class FlightRepository implements Crudable<Flight>{
 
             return flights;
         } catch (SQLException e) {
-           e.printStackTrace();
-           return null;
+            e.printStackTrace();
+            return null;
         }
     }
 
