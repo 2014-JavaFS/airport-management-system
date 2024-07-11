@@ -18,13 +18,47 @@ public class FlightRepository implements Crudable<Flight>{
     // TODO: IMPLEMENT ME!!!!!
     @Override
     public boolean update(Flight updatedFlight) {
-        return false;
+        try(Connection conn = ConnectionFactory.getConnectionFactory().getConnection()){
+
+            String sql = "update flights set origin_airport= ?, destination_airport= ?, seat_count= ? where flight_number = ?";
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+
+            preparedStatement.setString(1, updatedFlight.getOriginAirport());
+            preparedStatement.setString(2, updatedFlight.getDestinationAirport());
+            preparedStatement.setShort(3, updatedFlight.getSeatCount());
+            preparedStatement.setInt(4, updatedFlight.getFlightNumber());
+
+            if (preparedStatement.executeUpdate() == 0){
+                throw new RuntimeException("Flight was not updated into the datbase");
+                return false;
+            }
+            return true;
+        }catch(SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     // TODO: IMPLEMENT ME!!!!!
     @Override
-    public boolean delete() {
-        return false;
+    public boolean delete(int flight_number) {
+        try(Connection conn = ConnectionFactory.getConnectionFactory().getConnection()) {
+
+            String sql = "delete from flights where flight_number = ?";
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+
+            preparedStatement.setInt(1,flight_number);
+
+            if (preparedStatement.executeUpdate() == 0){
+                throw new RuntimeException("Flight was not deleted from the datbase");
+                return false;
+            }
+            return true;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     @Override
