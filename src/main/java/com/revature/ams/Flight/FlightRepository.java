@@ -7,6 +7,7 @@ import com.revature.ams.util.interfaces.Crudable;
 import com.revature.ams.util.interfaces.Serviceable;
 
 import java.sql.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,12 +19,62 @@ public class FlightRepository implements Crudable<Flight>{
     // TODO: IMPLEMENT ME!!!!!
     @Override
     public boolean update(Flight updatedFlight) {
-        return false;
+        try(Connection conn = ConnectionFactory.getConnectionFactory().getConnection()) {
+
+            String sql = "update flights set origin_airport = ?, destination_airport = ?, time_departure = ?, time_arrival = ?, pilot = ?, airline = ? where flight_number = ?";
+            //String sql = "update flights set origin_airport = ?, destination_airport = ?, pilot = ?, airline = ? where flight_number = ?";
+
+            // PreparedStatements SANITIZE any user input before execution
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+
+            // DO NOT FORGET SQL is 1-index, not 0-index. They made preparedStatement 1-index
+            preparedStatement.setString(1, updatedFlight.getOriginAirport());
+            preparedStatement.setString(2, updatedFlight.getDestinationAirport());
+            preparedStatement.setObject(3, Timestamp.valueOf(LocalDateTime.now())); // LocalDateTime vs. Date
+            preparedStatement.setObject(4, Timestamp.valueOf(LocalDateTime.now()));
+            preparedStatement.setInt(5, updatedFlight.getPilot());
+            preparedStatement.setInt(6, updatedFlight.getAirline());
+            preparedStatement.setInt(7, updatedFlight.getFlightNumber());
+            /*
+            preparedStatement.setInt(3, updatedFlight.getPilot());
+            preparedStatement.setInt(4, updatedFlight.getAirline());
+            preparedStatement.setInt(5, updatedFlight.getFlightNumber());
+            */
+
+            int checkInsert = preparedStatement.executeUpdate();
+            System.out.println("Updating....");
+            if (checkInsert == 0){
+                throw new RuntimeException("Flight was not inserted into the datbase");
+            }
+
+            return true;
+        } catch (SQLException e){
+            e.printStackTrace();
+            return false;
+        }
     }
 
     // TODO: IMPLEMENT ME!!!!!
     @Override
-    public boolean delete() {
+    public boolean delete(int flightNumber) {
+        Flight result = findById(flightNumber);
+        if(result != null){
+            try(Connection conn = ConnectionFactory.getConnectionFactory().getConnection()){
+                String sql = "delete from flights where flight_number = ?";
+                PreparedStatement preparedStatement = conn.prepareStatement(sql);
+
+                preparedStatement.setInt(1, flightNumber);
+
+                ResultSet resultSet = preparedStatement.executeQuery();
+
+                return true;
+
+            } catch (SQLException e){
+                e.printStackTrace();
+                return false;
+            }
+        }
+
         return false;
     }
 
