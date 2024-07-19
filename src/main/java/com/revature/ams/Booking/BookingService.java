@@ -60,6 +60,7 @@ public class BookingService {
 
     /**
      * The method calculates the total price of the booking, including seat price and luggage price.
+     * Utilizes calculateSeatPrice and calculateLuggagePrice
      * 
      * @param booking
      * @return
