@@ -33,9 +33,13 @@ public class Booking {
     }
 
     /**
-     * TODO: DOCUMENT ME
+     * This is an overloaded constructor that takes a BookingRequestDTO and maps it to a Booking object.
+     * The BookingRequestDTO object contains information about the flight number, the member id, 
+     * number of luggage checked in, and the seat type.
      *
      * @param bookingRequestDTO
+     *        This parameter contains raw data that is used to assign Booking for abstraction
+     *        and other purposes 
      */
     public Booking(BookingRequestDTO bookingRequestDTO){
         Flight flight = new Flight();

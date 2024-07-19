@@ -53,9 +53,10 @@ public class BookingService {
     }
 
     /**
-     * TODO: DOCUMENT ME
+     * This service method retrieves all bookings made by a specific member based on their memberId.
+     * 
      * @param memberId
-     * @return
+     * @return List generated from the bookingRepository and sends it to the bookingController.
      */
     public List<BookingResponseDTO> findAllBookingsByMemberId(int memberId){
        return bookingRepository.findAllBookingsByMemberId(memberId)
@@ -65,9 +66,11 @@ public class BookingService {
     }
 
     /**
-     * TODO: DOCUMENT ME
+     * The method calculates the total price of the booking, including seat price and luggage price.
+     * Utilizes calculateSeatPrice and calculateLuggagePrice
+     * 
      * @param booking
-     * @return
+     * @return Base price of the flight, plus the seat and luggage price
      */
     public BigDecimal calculateTotalPrice(Booking booking) {
         BigDecimal seatPrice = calculateSeatPrice(booking.getSeatType());
@@ -76,8 +79,9 @@ public class BookingService {
     }
 
     /**
-     * TODO: DOCUMENT ME
+     * The method assigns the seat price based on the seat type.
      * @param seatType
+     * @throws IllegalArgumentException when the seat type is invalid.
      * @return
      */
     private BigDecimal calculateSeatPrice(Booking.SeatType seatType) {
@@ -91,8 +95,13 @@ public class BookingService {
     }
 
     /**
-     * TODO: DOCUMENT ME
+     * The method calculates the total price of luggage based on the number of checked luggage, including discounts.
+     * Checked luggage is capped at 4 to prevent unnecessary discounts.
+     * The baseLuggagePrice assigns a base price of 30.00 per checked luggage.
+     * Discounts are applied based on the percentage of the base luggage price with the maximum discount being 25% when 4 luggages are booked.
+     * 
      * @param checkedLuggage
+     * @throws IllegalArgumentException when the number of checked luggage is less than 0.
      * @return
      */
     private BigDecimal calculateLuggagePrice(short checkedLuggage) {
