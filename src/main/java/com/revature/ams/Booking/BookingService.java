@@ -10,6 +10,8 @@ import java.util.Optional;
 
 /**
  * TODO: DOCUMENT ME
+ * This documentation is created by Arjun Ramsinghani
+ * We want a booking repository so that we can make adjustments to the database
  */
 public class BookingService {
     private final BookingRepository bookingRepository;
@@ -20,7 +22,11 @@ public class BookingService {
 
     /**
      * TODO: DOCUMENT ME
-     *
+     * First we calculate the price
+     * Then we want to know if we can have carry on luggage for our ticket, if conditions are met then we can carry on, otherwise it is false
+     * Optional is used if there is a clear need to represent a null value and placing a null value can cause an error, very useful class
+     * As long as the create method in repository doesnt throw anything than we can map the new booking to our DTO, otherwise it returns a null value
+     * map method returns a stream of results after applying the function to its elements
      * @param newBooking
      * @return
      */
@@ -38,6 +44,7 @@ public class BookingService {
 
     /**
      * TODO: DOCUMENT ME
+     * Returns a list of all bookings
      * @return
      */
     public List<Booking> findAll() {
@@ -46,6 +53,10 @@ public class BookingService {
 
     /**
      * TODO: DOCUMENT ME
+     * Returns all bookings created by a single person
+     * stream method will return a stream with this collection as the source
+     * map method returns a stream of results after applying the function to its elements
+     * toList method returns a list of the stream elements
      * @param memberId
      * @return
      */
@@ -58,6 +69,7 @@ public class BookingService {
 
     /**
      * TODO: DOCUMENT ME
+     * will calculate the price of the seat and luggage then return the sum in accordance with the value provided in below method
      * @param booking
      * @return
      */
@@ -69,6 +81,7 @@ public class BookingService {
 
     /**
      * TODO: DOCUMENT ME
+     * this method calculates the price based on the seat option and its provided value
      * @param seatType
      * @return
      */
@@ -84,8 +97,10 @@ public class BookingService {
 
     /**
      * TODO: DOCUMENT ME
+     * checks if we have our checked in luggage, accounts for negative numbers
+     * will do math to calculate the base luggage price and discounts
      * @param checkedLuggage
-     * @return
+     * @return - final calculation
      */
     private BigDecimal calculateLuggagePrice(short checkedLuggage) {
         if (checkedLuggage < 0) {
