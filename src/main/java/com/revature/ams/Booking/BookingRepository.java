@@ -131,6 +131,7 @@ public class BookingRepository {
 
     /**
      * TODO: DOCUMENT ME
+     *
      * @param rs
      * @return
      * @throws SQLException
