@@ -2,18 +2,15 @@ package com.revature.ams.Flight;
 
 import com.revature.ams.util.exceptions.DataNotFoundException;
 import com.revature.ams.util.exceptions.InvalidInputException;
-import com.revature.ams.util.exceptions.NoSpaceException;
 import com.revature.ams.util.interfaces.Serviceable;
 
-import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.function.Predicate;
 
 import static com.revature.ams.AirportFrontController.logger;
 
-// TODO: Implement the Service Layer, this contains all Business Logic (anything that makes sense in the scope of a business)
+
 public class FlightService implements Serviceable<Flight> {
     // -> lamba: format () -> {}, defining any parameteres used by the function and it's execution. Parenthesis not necessary for oen parameter
     private Predicate<String> isNotEmpty = str -> str != null && !str.isBlank();
@@ -47,16 +44,15 @@ public class FlightService implements Serviceable<Flight> {
         return foundFlight;
     }
 
-    // TODO: FIX ME FOR REPO
     public boolean update(Flight flightToUpdate) throws InvalidInputException {
         validateFullFlight(flightToUpdate);
+        Flight foundFlight = flightRepository.findById(flightToUpdate.getFlightNumber());
+        if(foundFlight == null){
+            throw new DataNotFoundException("Flight with that ID not in database, please check again");
+        }
         return flightRepository.update(flightToUpdate);
     }
 
-//    public boolean delete(Flight flight){
-//        validateFullFlight(flight);
-//        return flightRepository.delete(flight);
-//    }
 
     public boolean delete(Flight flight){
         validateFullFlight(flight);

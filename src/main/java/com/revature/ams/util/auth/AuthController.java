@@ -10,7 +10,6 @@ import javax.security.sasl.AuthenticationException;
 import java.lang.management.MemoryManagerMXBean;
 import java.util.Scanner;
 
-// TODO: REVIEW ME
 public class AuthController implements Controller {
 
     private final AuthService authService;

@@ -2,6 +2,9 @@ package com.revature.ams;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.revature.ams.Booking.BookingController;
+import com.revature.ams.Booking.BookingRepository;
+import com.revature.ams.Booking.BookingService;
 import com.revature.ams.Flight.FlightController;
 import com.revature.ams.Flight.FlightRepository;
 import com.revature.ams.Flight.FlightService;
@@ -42,6 +45,11 @@ public class AirportFrontController {
         AuthService authService = new AuthService(memberService);
         AuthController authController = new AuthController(authService);
         authController.registerPaths(app);
+
+        BookingRepository bookingRepository = new BookingRepository();
+        BookingService bookingService = new BookingService(bookingRepository);
+        BookingController bookingController = new BookingController(bookingService, memberService, flightService);
+        bookingController.registerPaths(app);
 
         app.start(8080);
     }

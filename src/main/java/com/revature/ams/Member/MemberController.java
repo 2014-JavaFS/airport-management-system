@@ -1,7 +1,5 @@
 package com.revature.ams.Member;
 
-// TODO: REVIEW ME
-
 import com.revature.ams.util.exceptions.DataNotFoundException;
 import com.revature.ams.util.interfaces.Controller;
 import io.javalin.Javalin;
