@@ -45,7 +45,9 @@ public class BookingService {
     }
 
     /**
-     * TODO: DOCUMENT ME
+     * This service method retrieves all bookings made by a specific member based on their memberId.
+     * The sends data generated from the bookingRepository and sends it to the bookingController.
+     * 
      * @param memberId
      * @return
      */
@@ -57,7 +59,8 @@ public class BookingService {
     }
 
     /**
-     * TODO: DOCUMENT ME
+     * The method calculates the total price of the booking, including seat price and luggage price.
+     * 
      * @param booking
      * @return
      */
@@ -68,7 +71,8 @@ public class BookingService {
     }
 
     /**
-     * TODO: DOCUMENT ME
+     * The method assigns the seat price based on the seat type.
+     * Throws an IllegalArgumentException if the seat type is invalid.
      * @param seatType
      * @return
      */
@@ -83,7 +87,12 @@ public class BookingService {
     }
 
     /**
-     * TODO: DOCUMENT ME
+     * The method calculates the total price of luggage based on the number of checked luggage, including discounts.
+     * If the number of checked luggage is less than 0, the method throws an IllegalArgumentException.
+     * Checked luggage is capped at 4 to prevent unnecessary discounts.
+     * The baseLuggagePrice assigns a base price of 30.00 per checked luggage.
+     * Discounts are applied based on the percentage of the base luggage price with the maximum discount being 25% when 4 luggages are booked.
+     * 
      * @param checkedLuggage
      * @return
      */

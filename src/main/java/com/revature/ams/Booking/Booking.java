@@ -33,7 +33,9 @@ public class Booking {
     }
 
     /**
-     * TODO: DOCUMENT ME
+     * This is a constructor that takes a BookingRequestDTO and maps it to a Booking object.
+     * The booking object contains information about the flight number, the member id, 
+     * number of luggage checked in, and the seat type.
      *
      * @param bookingRequestDTO
      */
