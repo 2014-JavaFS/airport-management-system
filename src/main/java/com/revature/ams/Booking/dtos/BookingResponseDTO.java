@@ -8,6 +8,9 @@ import java.math.BigDecimal;
 
 /**
  * TODO: DOCUMENT ME
+ * Making a class called BookingsResponseDTO used as a Data Transfer Object for other
+ * classes. This class declares data as well as implements 3 constructors each with 
+ * its own way of setting data.
  */
 public class BookingResponseDTO {
     private int bookingId;
@@ -31,7 +34,8 @@ public class BookingResponseDTO {
 
     /**
      * TODO: DOCUMENT ME
-     *
+     * This constructor is called whenever we want to make a new BookingResponseDTO Object given the
+     * parameter booking. It gets the booking data and sets the data into the newly created Object.
      * @param booking
      */
     public BookingResponseDTO(Booking booking){
