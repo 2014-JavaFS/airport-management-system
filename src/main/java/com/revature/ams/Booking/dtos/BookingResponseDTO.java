@@ -7,7 +7,8 @@ import java.math.BigDecimal;
 
 
 /**
- * TODO: DOCUMENT ME
+ * This DTO groups all the data necessary to either create a booking
+ * or for a booking to be made by this DTO.
  */
 public class BookingResponseDTO {
     private int bookingId;
@@ -30,9 +31,9 @@ public class BookingResponseDTO {
     }
 
     /**
-     * TODO: DOCUMENT ME
-     *
-     * @param booking
+     *This constructor extrapolates only the necessary information from a booking
+     * to be sent back to the client as a response.
+     * @param booking the booking object made from the earlier booking request
      */
     public BookingResponseDTO(Booking booking){
         this.flight = booking.getFlight();
