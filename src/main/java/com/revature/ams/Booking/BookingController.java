@@ -52,8 +52,8 @@ public class BookingController implements Controller {
     }
 
     /**
-     * TODO: DOCUMENT ME
-     * @param ctx
+     * If the member is an admin and memberType is not null, retrieve all bookings.
+     * @param ctx The context from HTTP request. Used to get the member type.
      */
     private void findAllBookings(Context ctx){
         String memberType = ctx.header("memberType");
@@ -67,8 +67,8 @@ public class BookingController implements Controller {
     }
 
     /**
-     * TODO: DOCUMENT ME
-     * @param ctx
+     * If member is logged in, will retrieve all the bookings for the member.
+     * @param ctx The context from HTTP request. Used to get the member id.
      */
     private void getMembersBookings(Context ctx) {
         int memberId = loggedInCheck(ctx);
@@ -77,15 +77,19 @@ public class BookingController implements Controller {
         ctx.json(bookingService.findAllBookingsByMemberId(memberId));
     }
 
-    // TODO: Implement Me
+    /**
+     * If member is logged in, will delete the booking specified in the ctx.
+     * @param ctx The context from HTTP request. Used to get the member id and booking id.
+     */
     private void deleteBooking(Context ctx) {
 
     }
 
     /**
-     * TODO: DOCUMENT ME
-     * @param ctx
-     * @return
+     * Checks if the member id is null.
+     * If not null then the member is logged in and returns their member id.
+     * @param ctx The context from HTTP request. Used to get the member id.
+     * @return memberId if member is logged in. -1 if member is not logged in.
      */
     private int loggedInCheck(Context ctx) {
         String headerMemberId = ctx.header("memberId");
