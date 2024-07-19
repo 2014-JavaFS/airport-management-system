@@ -2,6 +2,10 @@ package com.revature.ams.Booking.dtos;
 
 /**
  * TODO: DOCUMENT ME
+ * This class declares data and implements 2 constructors which initializing data currently not being used in the
+ * application.
+ *
+ * This class also implements its getters and setters used throughout the application.
  */
 public class BookingRequestDTO {
     private int flightNumber;

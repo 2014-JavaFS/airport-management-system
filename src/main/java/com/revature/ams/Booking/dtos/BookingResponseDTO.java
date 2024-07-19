@@ -8,6 +8,11 @@ import java.math.BigDecimal;
 
 /**
  * TODO: DOCUMENT ME
+ * Making a class called BookingsResponseDTO which declares data as well as implements 3 constructors.
+ * 2 constructors are currently not being used in the application, but the last constructor is  used in both
+ * bookingsController and Bookings Service.
+ *
+ *  This class also implements the getters and setters.
  */
 public class BookingResponseDTO {
     private int bookingId;
@@ -31,7 +36,9 @@ public class BookingResponseDTO {
 
     /**
      * TODO: DOCUMENT ME
-     *
+     * This constructor is called whenever we want to make a new BookingResponseDTO Object as seen in BookingController
+     *  Which calls BookingService which maps a new BookingResponseDTO. This data is then initialized using getters
+     *  which is then returned from service to the controller and finally created.
      * @param booking
      */
     public BookingResponseDTO(Booking booking){
