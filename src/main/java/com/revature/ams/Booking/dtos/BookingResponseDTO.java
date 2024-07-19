@@ -7,7 +7,11 @@ import java.math.BigDecimal;
 
 
 /**
- * TODO: DOCUMENT ME
+ *
+ * The Return class to give the User rather than the actual Returned Class itself
+ * Doesn't have the Member variable associated with a Booking Class being used here
+ * Has a Full Args, No Args, and Parent Class Arg constructor
+ * Also has all the Gets/Sets with a To String
  */
 public class BookingResponseDTO {
     private int bookingId;
@@ -30,8 +34,12 @@ public class BookingResponseDTO {
     }
 
     /**
-     * TODO: DOCUMENT ME
      *
+     * This is the Parent CLass Arg Constructor
+     * It takes an object from the Parent CLass
+     * ie Booking booking, and makes a class that
+     * has whatever is needed and nothing more to pass back
+     * To the user
      * @param booking
      */
     public BookingResponseDTO(Booking booking){
