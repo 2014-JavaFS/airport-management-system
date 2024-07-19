@@ -12,15 +12,15 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * TODO: DOCUMENT ME
+ * Represents a layer of the project architecture to help make requests to the database using PostgreSQL.
+ * @author Charles Jester
  */
 public class BookingRepository {
 
     /**
-     * TODO: DOCUMENT ME
-     *
-     * @param newBooking
-     * @return
+     * Creates an INSERT statement (DML) to send Booking information to the database.
+     * @param newBooking an Booking Object that stores all the information of a booking
+     * @return an Optional that contains the Booking created if no exceptions, an empty Optional otherwise
      */
     public Optional<Booking> create(Booking newBooking) {
         try (Connection conn = ConnectionFactory.getConnectionFactory().getConnection()) {
@@ -51,8 +51,8 @@ public class BookingRepository {
     }
 
     /**
-     * TODO: DOCUMENT ME
-     * @return
+     * Sends a SELECT (DQL) statement to the database to retrieve all booking information
+     * @return List of Bookings if no exceptions encountered, null otherwise
      */
     public List<Booking> findAll() {
         try (Connection conn = ConnectionFactory.getConnectionFactory().getConnection()) {
@@ -91,9 +91,9 @@ public class BookingRepository {
     }
 
     /**
-     * TODO: DOCUMENT ME
-     * @param memberId
-     * @return
+     * Sends a SELECT (DQL) statement to the database to retrieve all Bookings associated with a member
+     * @param memberId the id number of the member
+     * @return List of Bookings if no exceptions were encountered, null otherwise
      */
     public List<Booking> findAllBookingsByMemberId(int memberId) {
         try (Connection conn = ConnectionFactory.getConnectionFactory().getConnection()) {
