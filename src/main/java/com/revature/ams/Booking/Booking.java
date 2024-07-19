@@ -34,9 +34,13 @@ public class Booking {
 
     /**
      * TODO: DOCUMENT ME
+     *Below is the constructor that is used to assign methods to current class instance variables
+     * used to store the information booking for new flights, the Id of the user, the luggage that was checked in,
+     * and whether or not the member flying economic, first class, or business class
      *
      * @param bookingRequestDTO
      */
+
     public Booking(BookingRequestDTO bookingRequestDTO){
         Flight flight = new Flight();
         flight.setFlightNumber(bookingRequestDTO.getFlightNumber());
@@ -48,6 +52,12 @@ public class Booking {
         this.seatType = SeatType.valueOf(bookingRequestDTO.getSeatType());
     }
 
+    /**
+    *
+    *
+    *
+    *
+    */
     public int getBookingId() {
         return bookingId;
     }
