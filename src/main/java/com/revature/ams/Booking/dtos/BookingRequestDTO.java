@@ -1,7 +1,8 @@
 package com.revature.ams.Booking.dtos;
 
 /**
- * TODO: DOCUMENT ME
+ * This is the DTO that handles the relevant information
+ * for a customer to request a booking to be made.
  */
 public class BookingRequestDTO {
     private int flightNumber;

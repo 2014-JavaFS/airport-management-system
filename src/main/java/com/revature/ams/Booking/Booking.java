@@ -33,9 +33,10 @@ public class Booking {
     }
 
     /**
-     * TODO: DOCUMENT ME
-     *
-     * @param bookingRequestDTO
+     *A constructor for extracting the data from the Request DTO and
+     * initializing a fresh booking object from it.
+     * Filling in non-transferred information with default constructors.
+     * @param bookingRequestDTO the DTO that was constructed from an earlier booking request
      */
     public Booking(BookingRequestDTO bookingRequestDTO){
         Flight flight = new Flight();
