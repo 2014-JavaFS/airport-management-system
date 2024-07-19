@@ -53,7 +53,7 @@ public class Booking {
     }
 
     /**
-    *
+    * Getters and setters
     *
     *
     *
