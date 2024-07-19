@@ -52,7 +52,9 @@ public class BookingController implements Controller {
     }
 
     /**
-     * If the member is an admin and memberType is not null, retrieve all bookings.
+     * If member type is null or the member type is not admin, then the user will get a 403 response as they do not have the perms required.
+     * If the user does that pass the if statement then they are an ADMIN and request to find all can be submitted.
+     * The bookings are then displayed as a json to the user who made the request.
      * @param ctx The context from HTTP request. Used to get the member type.
      */
     private void findAllBookings(Context ctx){
