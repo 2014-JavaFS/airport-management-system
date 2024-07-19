@@ -1,4 +1,4 @@
-0package com.revature.ams.Booking;
+package com.revature.ams.Booking;
 
 import com.revature.ams.Booking.dtos.BookingRequestDTO;
 import com.revature.ams.Booking.dtos.BookingResponseDTO;
@@ -10,8 +10,7 @@ import io.javalin.http.Context;
 
 /**
  * Controller layer for the Booking model which utilizes BookingService, MemberService, and FlightService objects to
- * implement methods used in the endpoints that POST bookings, find all bookings, get all bookings with a specified
- * Member id, and delete a specified booking using the Booking id.
+ * implement methods used in the endpoints.
  */
 public class BookingController implements Controller {
     private final BookingService bookingService;
