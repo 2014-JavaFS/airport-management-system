@@ -13,12 +13,17 @@ import java.util.Optional;
 
 /**
  * TODO: DOCUMENT ME
+ * The BookingRepository class is part of the Data Access Layer, in which all database operations
+ * are handled. In other words, a layer between the business logic and data storage, part of the
+ * broader repository pattern.
  */
 public class BookingRepository {
 
     /**
      * TODO: DOCUMENT ME
-     *
+     * This code is ysed to create new bookings im the database, using preparedStatements in order to
+     * implement sql statements into the database, these insets are than run through a check for Invalid
+     * statements and errors.
      * @param newBooking
      * @return
      */
@@ -52,6 +57,9 @@ public class BookingRepository {
 
     /**
      * TODO: DOCUMENT ME
+     * This layer joins the bookings class with the members class, and executes database query
+     * similair to the previous class (Booking new Booking) utilizing a findAll() for both bookings
+     * and members.
      * @return
      */
     public List<Booking> findAll() {
@@ -92,6 +100,7 @@ public class BookingRepository {
 
     /**
      * TODO: DOCUMENT ME
+     * This method is similar but specifically searches for Bookings by member id.
      * @param memberId
      * @return
      */
@@ -131,7 +140,11 @@ public class BookingRepository {
 
     /**
      * TODO: DOCUMENT ME
-     * @param rs
+     * This takes a ResultSet as an input and potentially throws and exception
+     * if there are issues accessing the result, if the exception is not thrown
+     * than the Flight object is populated with the ResultSet, also accounts for
+     * time handling (time_arrival, time_departure) and error handling.
+     * @param rsyee
      * @return
      * @throws SQLException
      */
