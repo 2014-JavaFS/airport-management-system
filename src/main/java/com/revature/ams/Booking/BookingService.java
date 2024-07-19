@@ -44,8 +44,9 @@ public class BookingService {
     }
 
     /**
-     * TODO: DOCUMENT ME
-     * @return
+     * Retrieves all flight bookings.
+     *
+     * @return a list of all {@link Booking} objects.
      */
     public List<Booking> findAll() {
         return bookingRepository.findAll();
