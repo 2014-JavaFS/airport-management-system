@@ -1,4 +1,4 @@
-package com.revature.ams.Booking;
+0package com.revature.ams.Booking;
 
 import com.revature.ams.Booking.dtos.BookingRequestDTO;
 import com.revature.ams.Booking.dtos.BookingResponseDTO;
@@ -9,7 +9,9 @@ import io.javalin.Javalin;
 import io.javalin.http.Context;
 
 /**
- * TODO: DOCUMENT ME
+ * Controller layer for the Booking model which utilizes BookingService, MemberService, and FlightService objects to
+ * implement methods used in the endpoints that POST bookings, find all bookings, get all bookings with a specified
+ * Member id, and delete a specified booking using the Booking id.
  */
 public class BookingController implements Controller {
     private final BookingService bookingService;
@@ -23,9 +25,12 @@ public class BookingController implements Controller {
     }
 
     /**
-     * TODO: DOCUMENT ME
+     * Creates connections to the specified endpoints so that Postman can execute queries to the database through them.
+     * GETs: findALlBookings, getMembersBookings
+     * POST: postBookgFlight
+     * DELETE: deleteBooking
      *
-     * @param app
+     * @param app - Javalin instance that sets up the endpoints and connects them with the corresponding method.
      */
     @Override
     public void registerPaths(Javalin app) {
@@ -36,8 +41,10 @@ public class BookingController implements Controller {
     }
 
     /**
-     * TODO: DOCUMENT ME
-     * @param ctx
+     * Receives the Postman request body as a json object to create a new Booking object which is given a Flight and
+     * a Member object and then is passed into bookingerService.
+     * @param ctx - Context instance that retrieves the request's body as a BookingRequestDTO object and sends back a
+     *            BookingResponseDTO object.
      */
     private void postBookFlight(Context ctx) {
         BookingRequestDTO bookingRequestDTO = ctx.bodyAsClass(BookingRequestDTO.class);
