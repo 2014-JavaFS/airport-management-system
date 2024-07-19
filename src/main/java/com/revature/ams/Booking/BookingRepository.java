@@ -130,11 +130,15 @@ public class BookingRepository {
     }
 
     /**
-     * TODO: DOCUMENT ME
+     * Takes in a {@link ResultSet} and generates a {@link Flight} object.
+     * <p>
+     *  The relevant fields from the ResultSet are extracted and set to the corresponding Flight object variables.
+     *  The SQL types from the ResultSet are converted to Java types.
+     * </p>
      *
-     * @param rs
-     * @return
-     * @throws SQLException
+     * @param rs contains {@link Flight} data from a database query
+     * @return a {@link Flight} object populated with data from the {@link ResultSet}
+     * @throws SQLException if SQL exception occurs while accessing the {@link ResultSet}
      */
     private Flight generateFlightFromResultSet(ResultSet rs) throws SQLException {
         Flight flight = new Flight();

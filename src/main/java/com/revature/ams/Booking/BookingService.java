@@ -9,7 +9,8 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * TODO: DOCUMENT ME
+ * The {@code BookingService} class provides methods to manage flight bookings.
+ * It interacts with the {@link BookingRepository} to perform CRUD operations.
  */
 public class BookingService {
     private final BookingRepository bookingRepository;
@@ -19,10 +20,16 @@ public class BookingService {
     }
 
     /**
-     * TODO: DOCUMENT ME
+     * Books a flight with the given {@link Booking} details.
+     * <p>
+     * This method calculates the total price for the booking and sets the carry-on allowance
+     * based on the seat type. It then creates the booking using the repository and returns
+     * a {@link BookingResponseDTO} if successful.
+     * </p>
      *
-     * @param newBooking
-     * @return
+     * @param newBooking the booking details for the new flight.
+     * @return a BookingResponseDTO object containing the details of the booked flight
+     * @throws InvalidInputException if the booking creation fails
      */
     public BookingResponseDTO bookFlight(Booking newBooking) {
         newBooking.setPrice(calculateTotalPrice(newBooking));
@@ -37,8 +44,9 @@ public class BookingService {
     }
 
     /**
-     * TODO: DOCUMENT ME
-     * @return
+     * Retrieves all flight bookings.
+     *
+     * @return a list of all {@link Booking} objects.
      */
     public List<Booking> findAll() {
         return bookingRepository.findAll();
