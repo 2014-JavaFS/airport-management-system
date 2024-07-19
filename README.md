@@ -4,8 +4,7 @@
 
 This is a simple Airport Management System for an airport utilizing Java.
 
-## AMS ERD
-![](src/main/resources/ams-erd.png)
+## AMS E
 
 ## AMS API Architecture
 
