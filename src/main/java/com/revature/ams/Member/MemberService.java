@@ -5,7 +5,6 @@ import com.revature.ams.util.interfaces.Serviceable;
 
 import java.util.List;
 
-// TODO: REVIEW ME
 public class MemberService implements Serviceable<Member> {
     private final MemberRepository memberRepository;
 

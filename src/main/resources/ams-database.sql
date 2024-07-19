@@ -351,6 +351,54 @@ call update_flight(77778,
 123456, 
 4567,
 0);
+ select * from members m ;
+
+-- BOOKINGS
+drop table bookings on delete cascade;
+create type seat_enum as enum ('SEATSOPTIONAL', 'ECONOMY', 'BUSINESS', 'FIRSTCLASS');
+CREATE TABLE bookings (
+  booking_id SERIAL PRIMARY KEY,
+  flight_number int NOT NULL,
+  member_id INT NOT NULL,
+  seat_type seat_enum default 'SEATSOPTIONAL',
+  carry_on_allowed boolean,
+  checked_luggage SMALLINT,
+  price DECIMAL(10,2) NOT NULL,
+  FOREIGN KEY (flight_number) REFERENCES flights(flight_number),  -- Assuming flights table exists
+  FOREIGN KEY (member_id) REFERENCES members(member_id)  -- Assuming members table exists
+);
+select * from bookings ;
+-- Sample data (replace with your actual data)
+INSERT INTO bookings (flight_number, member_id, seat_type, checked_luggage, carry_on_allowed, price)
+VALUES (777777, 1, 'ECONOMY', 1, false, 280.00),  
+       (555555, 2, 'BUSINESS', 3, true, 720.00),  
+       (888888, 48, 'FIRSTCLASS', 0, true, 1100.00); 
+      
+select * from bookings b 
+join flights f on f.flight_number = b.flight_number
+where b.member_id = 48; 
+
+create or replace function generate_carry_on()
+	returns trigger
+	language plpgsql
+	as $$
+begin 
+	if new.seat_type = 'SEATSOPTIONAL' or new.seat_type = 'ECONOMY' then
+		new.carry_on_allowed := false; -- := is reassignment, because = is value evaluator
+	else 
+		new.carry_on_allowed := true;	
+	end if;
+	return new;
+end; 
+$$
+
+create or replace trigger assign_carry_on 
+before insert 
+on bookings
+for each row
+execute function generate_carry_on();
+
+select * from bookings ;
 
 
 

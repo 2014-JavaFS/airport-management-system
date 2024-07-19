@@ -5,7 +5,6 @@
     <import class="ch.qos.logback.classic.encoder.PatternLayoutEncoder"/>
     <import class="ch.qos.logback.core.rolling.RollingFileAppender"/>
     <import class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy"/>
-    <import class="ch.qos.logback.core.FileAppender"/>
 
     <appender name="Console" class="ConsoleAppender">
         <encoder class="PatternLayoutEncoder">
@@ -13,9 +12,13 @@
         </encoder>
     </appender>
 
-    <appender name="File" class="FileAppender">
-        <file>/c/Users/CharlesJester/IdeaProjects/airport-management-system/src/main/resources/ams.log</file>
-        <append>true</append>
+    <appender name="File" class="RollingFileAppender">
+        <rollingPolicy class="SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>sample-app.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+            <maxFileSize>1MB</maxFileSize>
+            <totalSizeCap>1GB</totalSizeCap>
+        </rollingPolicy>
         <encoder>
             <pattern>%d{ISO8601} %-5level [%t] %C{20}: %msg%n%throwable</pattern>
         </encoder>
