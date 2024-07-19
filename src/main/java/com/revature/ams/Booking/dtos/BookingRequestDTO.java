@@ -1,7 +1,15 @@
 package com.revature.ams.Booking.dtos;
 
 /**
- * TODO: DOCUMENT ME
+ *
+ * Looks like its a simplified object that is partially implementing the Booking Object.
+ * It looks like it is made to be given from client to server, so things left out are probably
+ * to keep the user from modifying them in error inducing or malicious ways.
+ * It leaves out Carry On Allowed, Booking Number, and Price variables.
+ * It is setup to no arg construct, use gets/sets, and full args construct.
+ * No To String, unlike the other DTO, but since this is from client to server
+ * this makes some level of sense, as the server doesn't need a To String, it would
+ * just save the Information or convert to an actuall Bookings and use its To String.
  */
 public class BookingRequestDTO {
     private int flightNumber;
