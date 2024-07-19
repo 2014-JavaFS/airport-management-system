@@ -40,7 +40,7 @@ public class BookingController implements Controller {
     }
 
     /**
-     * Receives the Postman request body as a json object to create a new Booking object which is given a Flight and
+     * Receives the request body as a json object to create a new Booking object which is given a Flight and
      * a Member object and then is passed into bookingerService.
      * @param ctx - Context instance that retrieves the request's body as a BookingRequestDTO object and sends back a
      *            BookingResponseDTO object.
