@@ -16,6 +16,10 @@ import java.util.Optional;
 public class BookingService {
     private final BookingRepository bookingRepository;
 
+    /**
+     * The constructor declares how the object should initialize and instantiate
+     * @param bookingRepository
+     */
     public BookingService(BookingRepository bookingRepository) {
         this.bookingRepository = bookingRepository;
     }
