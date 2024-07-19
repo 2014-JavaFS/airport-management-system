@@ -9,7 +9,9 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * TODO: DOCUMENT ME
+ * Service class for managing flight bookings.
+ *  * This class contains business logic for creating bookings,
+ *  * calculating prices, and retrieving booking information.
  */
 public class BookingService {
     private final BookingRepository bookingRepository;
@@ -19,10 +21,13 @@ public class BookingService {
     }
 
     /**
-     * TODO: DOCUMENT ME
-     *
-     * @param newBooking
-     * @return
+     * Method: below creates new flight booking and setting Carry On Allowance.
+     * Input: newBooking - details of the new booking
+     * process: - calculate total price of booking
+     *          - set carry-on allowed if seat type is Business or Firstclass
+     *          - create the booking in the repo.
+     * output: the booking response DTO with the booking information.
+     * @Throws InvalidInputException if the booking could not be created.
      */
     public BookingResponseDTO bookFlight(Booking newBooking) {
         newBooking.setPrice(calculateTotalPrice(newBooking));
@@ -37,15 +42,18 @@ public class BookingService {
     }
 
     /**
-     * TODO: DOCUMENT ME
-     * @return
+     * method: Retrieves all bookings from the repository.
+     *output: List<Booking> - a lsit of all bookings
+     * @return a list of all bookings
      */
     public List<Booking> findAll() {
         return bookingRepository.findAll();
     }
 
     /**
-     * TODO: DOCUMENT ME
+     * method: Find all bookings by member ID
+     * Input: memberId - hte Id of the member
+     * Output: List<BookingRsponseDTO> - a list of booking response DTOs for the member
      * @param memberId
      * @return
      */
@@ -57,7 +65,9 @@ public class BookingService {
     }
 
     /**
-     * TODO: DOCUMENT ME
+     * Method: Calculate total price of booking
+     * Input: booking- the booking details
+     * Output: BigDecimal - the total price of the booking
      * @param booking
      * @return
      */
@@ -68,7 +78,9 @@ public class BookingService {
     }
 
     /**
-     * TODO: DOCUMENT ME
+     * Method: Calculate the price of a seat
+     * Input: seatType- the type of a seat
+     * output: BigDecimal - the price of seat
      * @param seatType
      * @return
      */
@@ -83,7 +95,10 @@ public class BookingService {
     }
 
     /**
-     * TODO: DOCUMENT ME
+     * method: Calculate the price of a checked luggage
+     * Input: checkedLuggage - the number of checked luggage
+     * Output: Bigdecimal - the price of the luggage
+     * Throws: IllegalArgumentException if the number of checked luggage is negative
      * @param checkedLuggage
      * @return
      */
