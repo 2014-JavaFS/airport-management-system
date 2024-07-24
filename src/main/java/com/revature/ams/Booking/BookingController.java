@@ -1,21 +1,36 @@
 
 package com.revature.ams.Booking;
 
-import com.revature.ams.Booking.dtos.BookingRequestDTO;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
 import com.revature.ams.Booking.dtos.BookingResponseDTO;
 import com.revature.ams.Flight.FlightService;
 import com.revature.ams.Member.MemberService;
+
+
 
 /**
  * BookingController is the control layer of the booking functional group. It must be injected with bookingService,
  * memberService, and flightService dependencies at instantiation [all three are declared private final].
  * The class implements the ams.util.interfaces.Controller interface.
  */
+@RestController
+@RequestMapping("/booking")
 public class BookingController {
     private final BookingService bookingService;
     private final MemberService memberService;
     private final FlightService flightService;
 
+    @Autowired
     public BookingController(BookingService bookingService, MemberService memberService, FlightService flightService) {
         this.bookingService = bookingService;
         this.memberService = memberService;
@@ -31,8 +46,9 @@ public class BookingController {
      *
      * If the method is successful it returns a 201 (Created) status as well as a json of the bookingResponseDTO object.
      */
-    private void postBookFlight() {
-
+    @PostMapping("/bookings/create")
+    public ResponseEntity<BookingResponseDTO> createBook(@RequestBody Booking book) {
+        return ResponseEntity.status(201).body(bookingService.bookFlight(book));
     }
 
     /**
@@ -41,8 +57,9 @@ public class BookingController {
      * along with a status message.
      * If the memberType is ADMIN it responds with a call to bookingService.findAll via ctx.json.
      */
-    private void findAllBookings(){
-
+    @GetMapping("/bookings/findAll")
+    private ResponseEntity<List<Booking>> findAllBookings(){
+        return ResponseEntity.status(200).body(bookingService.findAll());
     }
 
     /**
@@ -50,13 +67,14 @@ public class BookingController {
      * If a member is logged in it will then call bookingService.findAllBookingsByMemberId to return the flights
      * with that specific memberId via a json response.
      */
-    private void getMembersBookings() {
-
+    @GetMapping("/bookings/{memberId}")
+    private ResponseEntity<List<BookingResponseDTO>> getMembersBookings(@PathVariable int memberId) {
+        return ResponseEntity.status(200).body(bookingService.findAllBookingsByMemberId(memberId));
     }
 
     // TODO: Implement Me
     private void deleteBooking() {
-
+        
     }
 
     /**
