@@ -2,6 +2,8 @@ package com.revature.ams.Booking;
 
 import com.revature.ams.Booking.dtos.BookingResponseDTO;
 import com.revature.ams.util.exceptions.InvalidInputException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -12,9 +14,10 @@ import java.util.Optional;
  * Handles all the business logic for the BookingController class
  * It contains methods that validate any and all information provided for creating and finding flight bookings
  */
+@Service
 public class BookingService {
     private final BookingRepository bookingRepository;
-
+    @Autowired
     public BookingService(BookingRepository bookingRepository) {
         this.bookingRepository = bookingRepository;
     }
@@ -40,6 +43,7 @@ public class BookingService {
 
         return booking.map(BookingResponseDTO::new).get();
     }
+
 
     /**
      * Retrieves a list of all the flight bookings

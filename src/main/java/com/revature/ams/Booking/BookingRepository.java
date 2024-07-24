@@ -4,6 +4,7 @@ import com.revature.ams.Flight.Flight;
 import com.revature.ams.Member.Member;
 import com.revature.ams.util.ConnectionFactory;
 import com.revature.ams.util.exceptions.InvalidInputException;
+import org.springframework.stereotype.Repository;
 
 import java.sql.*;
 import java.time.ZoneOffset;
@@ -14,6 +15,7 @@ import java.util.Optional;
 /**
  *
  */
+@Repository
 public class BookingRepository {
 
     /**
@@ -161,4 +163,5 @@ public class BookingRepository {
 
         return flight;
     }
+
 }
