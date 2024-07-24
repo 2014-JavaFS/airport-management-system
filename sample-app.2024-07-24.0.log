@@ -844,3 +844,48 @@ Consider defining a bean of type 'com.revature.ams.util.auth.AuthService' in you
 2024-07-24 12:58:47,617 INFO  [http-nio-8080-exec-6] o.a.j.l.DirectJDKLog: Initializing Spring DispatcherServlet 'dispatcherServlet'
 2024-07-24 12:58:47,620 INFO  [http-nio-8080-exec-6] o.s.w.s.FrameworkServlet: Initializing Servlet 'dispatcherServlet'
 2024-07-24 12:58:47,626 INFO  [http-nio-8080-exec-6] o.s.w.s.FrameworkServlet: Completed initialization in 3 ms
+2024-07-24 15:56:51,605 INFO  [background-preinit] o.h.v.i.util.Version: HV000001: Hibernate Validator 8.0.1.Final
+2024-07-24 15:56:51,641 INFO  [main] o.s.b.StartupInfoLogger: Starting AirportManagementSystemApplication using Java 17.0.11 with PID 25320 (C:\Users\ejcbe\OneDrive\Desktop\Training\airport-management-system\target\classes started by ejcbe in C:\Users\ejcbe\OneDrive\Desktop\Training\airport-management-system)
+2024-07-24 15:56:51,642 INFO  [main] o.s.b.SpringApplication: No active profile set, falling back to 1 default profile: "default"
+2024-07-24 15:56:52,656 INFO  [main] o.s.b.w.e.t.TomcatWebServer: Tomcat initialized with port 8080 (http)
+2024-07-24 15:56:52,661 INFO  [main] o.a.j.l.DirectJDKLog: Initializing ProtocolHandler ["http-nio-8080"]
+2024-07-24 15:56:52,663 INFO  [main] o.a.j.l.DirectJDKLog: Starting service [Tomcat]
+2024-07-24 15:56:52,665 INFO  [main] o.a.j.l.DirectJDKLog: Starting Servlet engine: [Apache Tomcat/10.1.26]
+2024-07-24 15:56:52,718 INFO  [main] o.a.j.l.DirectJDKLog: Initializing Spring embedded WebApplicationContext
+2024-07-24 15:56:52,718 INFO  [main] o.s.b.w.s.c.ServletWebServerApplicationContext: Root WebApplicationContext: initialization completed in 1038 ms
+2024-07-24 15:56:52,876 WARN  [main] o.s.c.s.AbstractApplicationContext: Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'bookingController' defined in file [C:\Users\ejcbe\OneDrive\Desktop\Training\airport-management-system\target\classes\com\revature\ams\Booking\BookingController.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'bookingService' defined in file [C:\Users\ejcbe\OneDrive\Desktop\Training\airport-management-system\target\classes\com\revature\ams\Booking\BookingService.class]: Unsatisfied dependency expressed through constructor parameter 0: No qualifying bean of type 'com.revature.ams.Booking.BookingRepository' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+2024-07-24 15:56:52,879 INFO  [main] o.a.j.l.DirectJDKLog: Stopping service [Tomcat]
+2024-07-24 15:56:52,906 INFO  [main] o.s.b.a.l.ConditionEvaluationReportLogger: 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2024-07-24 15:56:52,932 ERROR [main] o.s.b.d.LoggingFailureAnalysisReporter: 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 0 of constructor in com.revature.ams.Booking.BookingService required a bean of type 'com.revature.ams.Booking.BookingRepository' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'com.revature.ams.Booking.BookingRepository' in your configuration.
+
+2024-07-24 16:09:16,677 INFO  [background-preinit] o.h.v.i.util.Version: HV000001: Hibernate Validator 8.0.1.Final
+2024-07-24 16:09:16,711 INFO  [main] o.s.b.StartupInfoLogger: Starting AirportManagementSystemApplication using Java 17.0.11 with PID 30680 (C:\Users\ejcbe\OneDrive\Desktop\Training\airport-management-system\target\classes started by ejcbe in C:\Users\ejcbe\OneDrive\Desktop\Training\airport-management-system)
+2024-07-24 16:09:16,713 INFO  [main] o.s.b.SpringApplication: No active profile set, falling back to 1 default profile: "default"
+2024-07-24 16:09:17,737 INFO  [main] o.s.b.w.e.t.TomcatWebServer: Tomcat initialized with port 8080 (http)
+2024-07-24 16:09:17,743 INFO  [main] o.a.j.l.DirectJDKLog: Initializing ProtocolHandler ["http-nio-8080"]
+2024-07-24 16:09:17,746 INFO  [main] o.a.j.l.DirectJDKLog: Starting service [Tomcat]
+2024-07-24 16:09:17,746 INFO  [main] o.a.j.l.DirectJDKLog: Starting Servlet engine: [Apache Tomcat/10.1.26]
+2024-07-24 16:09:17,805 INFO  [main] o.a.j.l.DirectJDKLog: Initializing Spring embedded WebApplicationContext
+2024-07-24 16:09:17,806 INFO  [main] o.s.b.w.s.c.ServletWebServerApplicationContext: Root WebApplicationContext: initialization completed in 1059 ms
+2024-07-24 16:09:18,439 INFO  [main] o.s.b.a.e.w.EndpointLinksResolver: Exposing 1 endpoint beneath base path '/actuator'
+2024-07-24 16:09:18,511 INFO  [main] o.a.j.l.DirectJDKLog: Starting ProtocolHandler ["http-nio-8080"]
+2024-07-24 16:09:18,538 INFO  [main] o.s.b.w.e.t.TomcatWebServer: Tomcat started on port 8080 (http) with context path '/'
+2024-07-24 16:09:18,551 INFO  [main] o.s.b.StartupInfoLogger: Started AirportManagementSystemApplication in 2.077 seconds (process running for 2.437)
+2024-07-24 16:09:59,933 INFO  [http-nio-8080-exec-2] o.a.j.l.DirectJDKLog: Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-07-24 16:09:59,934 INFO  [http-nio-8080-exec-2] o.s.w.s.FrameworkServlet: Initializing Servlet 'dispatcherServlet'
+2024-07-24 16:09:59,935 INFO  [http-nio-8080-exec-2] o.s.w.s.FrameworkServlet: Completed initialization in 1 ms
