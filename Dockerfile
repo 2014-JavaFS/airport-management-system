@@ -13,6 +13,7 @@ COPY . .
 #COPY .mvn/ .mvn
 #COPY pom.xml ./
 #COPY mvnw ./
+RUN chmod +x mvnw
 
 ENV PORT=9999
 
