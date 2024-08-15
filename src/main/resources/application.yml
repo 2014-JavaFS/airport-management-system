@@ -1,0 +1,48 @@
+spring:
+  profiles:
+    active: prod
+
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+  datasource:
+    url: jdbc:postgresql://ams-database.ciotsjjufktg.us-east-2.rds.amazonaws.com:5432/postgres
+    username: postgres
+    password: ${DBPASS}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        ddl-auto: update
+    show-sql: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+          - info
+          - metrics
+          - loggers
+          - health
+
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
+  datasource:
+    url: jdbc:postgresql://ams-database.ciotsjjufktg.us-east-2.rds.amazonaws.com:5432/postgres
+    username: postgres
+    password: ${DBPASS}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        ddl-auto: update
+    show-sql: true
+server:
+  port: 9999
