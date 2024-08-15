@@ -31,8 +31,9 @@ pipeline{
 //         stage to stop all running contianers & remove them
         stage("Stop & Destroy"){
             steps{
-                sh "docker stop ${CONTAINER}"
-                sh "docker rm ${CONTAINER}"
+                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE'){
+                    sh "docker rm ${CONTAINER}"
+                }
             }
         }
 
@@ -41,7 +42,7 @@ pipeline{
             steps{
 // docker run, but we've add the -e flag to pass the environment variable defined in Jenkins to the our Docker Container
 // so our application.yml has context for what's there
-                sh "docker run -d -e DBPASS=${DBPASS} --name ${CONTAINER} -p 8888:9999 jestercharles/ams-jenkins:${VERSION}"
+                sh "docker run --name ${CONTAINER} -e DBPASS=${DBPASS} -d -p 8888:9999 jestercharles/ams-jenkins:${VERSION}"
             }
 
         }
