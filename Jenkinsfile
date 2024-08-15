@@ -9,6 +9,7 @@ pipeline{
         dockerHub = credentials('dockerHub')
         DBPASS = credentials('DBPASS')
         VERSION = "${env.BUILD_ID}"
+        CONTAINER = "ams-backend-server"
     }
 
 // definte all of the stages
@@ -27,12 +28,20 @@ pipeline{
 
         }
 
+//         stage to stop all running contianers & remove them
+        stage("Stop & Destroy"){
+            steps{
+                sh "docker stop ${CONTAINER}"
+                sh "docker rm ${CONTAINER}"
+            }
+        }
+
         stage('Deploy'){
 
             steps{
 // docker run, but we've add the -e flag to pass the environment variable defined in Jenkins to the our Docker Container
 // so our application.yml has context for what's there
-                sh "docker run -e DBPASS=${DBPASS} -p 8888:9999 jestercharles/ams-jenkins:${VERSION}"
+                sh "docker run -d -e DBPASS=${DBPASS} --name ${CONTAINER} -p 8888:9999 jestercharles/ams-jenkins:${VERSION}"
             }
 
         }
