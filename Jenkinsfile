@@ -32,6 +32,7 @@ pipeline{
         stage("Stop & Destroy"){
             steps{
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE'){
+                    sh "docker stop ${CONTAINER}"
                     sh "docker rm ${CONTAINER}"
                 }
             }
