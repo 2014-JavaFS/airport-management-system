@@ -10,7 +10,7 @@ pipeline{
         stage('Build & Deliver'){
 
             steps{
-                sh "docker login -u ${env.dockerHubUsername} -p ${env.dockerHubPassword}"
+                sh "docker login -u ${dockerHub_USR} -p ${dockerHub_PSW}"
                 sh 'docker build -t jestercharles/ams-jenkins:1.0.0 .'
                 sh 'docker push jestercharles/ams-jenkins:1.0.0'
             }
