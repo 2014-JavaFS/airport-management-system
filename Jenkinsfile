@@ -1,11 +1,16 @@
 pipeline{
     agent any
 
+    environment{
+        dockerHub = credentials('dockerHub')
+    }
+
     stages{
 
         stage('Build & Deliver'){
 
             steps{
+                sh "docker login -u ${env.dockerHubUsername} -p ${env.dockerHubPassword}"
                 sh 'docker build -t jestercharles/ams-jenkins:1.0.0 .'
                 sh 'docker push jestercharles/ams-jenkins:1.0.0'
             }
