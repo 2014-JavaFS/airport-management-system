@@ -31,7 +31,7 @@ pipeline{
             steps{
 // docker run, but we've add the -e flag to pass the environment variable defined in Jenkins to the our Docker Container
 // so our application.yml has context for what's there
-                sh "docker run -e DBPASS=${DBPASS} -d -p 8888:9999 jestercharles/ams-jenkins:1.0.0"
+                sh "docker run -e DBPASS=${DBPASS} -p 8888:9999 jestercharles/ams-jenkins:1.0.0"
             }
 
         }
