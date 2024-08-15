@@ -3,6 +3,7 @@ pipeline{
 
     environment{
         dockerHub = credentials('dockerHub')
+        DBPASS = credentials('DBPASS')
     }
 
     stages{
@@ -20,7 +21,7 @@ pipeline{
         stage('Deploy'){
 
             steps{
-                sh 'docker run -d -p 8888:9999 jestercharles/ams-jenkins:1.0.0'
+                sh "docker run -d -p 8888:9999 jestercharles/ams-jenkins:1.0.0 -e DBPASS=${DBPASS}"
             }
 
         }
