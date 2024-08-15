@@ -8,6 +8,7 @@ pipeline{
     environment{
         dockerHub = credentials('dockerHub')
         DBPASS = credentials('DBPASS')
+        VERSION = "${env.BUILD_ID}"
     }
 
 // definte all of the stages
@@ -19,9 +20,9 @@ pipeline{
 // Steps are all of the executables on shell, use "" when using environment variables
             steps{
                 sh "docker login -u ${dockerHub_USR} -p ${dockerHub_PSW}"
-                sh 'docker build -t jestercharles/ams-jenkins:1.0.0 .'
+                sh "docker build -t jestercharles/ams-jenkins:${VERSION} ."
 //pushes image to dockerHub
-                sh 'docker push jestercharles/ams-jenkins:1.0.0'
+                sh "docker push jestercharles/ams-jenkins:${VERSION}"
             }
 
         }
@@ -31,7 +32,7 @@ pipeline{
             steps{
 // docker run, but we've add the -e flag to pass the environment variable defined in Jenkins to the our Docker Container
 // so our application.yml has context for what's there
-                sh "docker run -e DBPASS=${DBPASS} -p 8888:9999 jestercharles/ams-jenkins:1.0.0"
+                sh "docker run -e DBPASS=${DBPASS} -p 8888:9999 jestercharles/ams-jenkins:${VERSION}"
             }
 
         }
